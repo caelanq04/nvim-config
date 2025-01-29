@@ -52,9 +52,18 @@ return {
             cmp.abort()
             fallback()
           end,
-          ["<tab>"] = cmp.mapping(function(fallback)
-            if cmp.visible() and has_words_before() then
-              cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+          ["<Tab>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+              if #cmp.get_entries() == 1 then
+                cmp.confirm({ select = true })
+              else
+                cmp.select_next_item()
+              end
+            elseif has_words_before() then
+              cmp.complete()
+              if #cmp.get_entries() == 1 then
+                cmp.confirm({ select = true })
+              end
             else
               fallback()
             end
