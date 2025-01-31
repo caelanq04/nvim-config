@@ -12,3 +12,5 @@ vim.api.nvim_create_autocmd("VimEnter", {
     )
   end,
 })
+
+vim.env.python3_host_prog = "C:/Users/cquigley/AppData/Local/Programs/Python/Python313"
